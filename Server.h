@@ -12,6 +12,7 @@ public:
         this->l_table = l_table;
         this->h_table = h_table;
     }
+    
     template <typename T, typename R>
     void setElementByKey(T table, std::string key, R value){
         table.setElementByKey(key, value);

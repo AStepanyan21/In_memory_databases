@@ -3,9 +3,11 @@
 #include<iostream>
 #include<string>
 #include<regex>
+#include "Commands.h"
 #include "Types.h"
 #include "Tables.h"
 #include "Server.h"
+
 
 class ServerCLI{
 public:
@@ -22,7 +24,13 @@ private:
         this->lexer(result);
     }
     void lexer(std::vector<std::string> token){
-
+        if(token[0] == SADD){
+            this->setElementByKey(this->s.getStringTable(), token[1],token[2]);
+        }else if(token[0] == LADD){
+            this->setElementByKey(this->s.getListTable(), token[1], token[2]);
+        }else if(token[0] == HADD){
+            this->setElementByKey(this->s.getHashTable(), token[1], token[2]);
+        }
     }
     template<typename T>
     T getElementByKey(T table, std::string key){
